@@ -42,10 +42,12 @@ def setup(*args):
 
 # Use Turtle's ontimer function to recursively check whether player has pressed 'Play' button for game to begin
 def check_game_trigger():
+    global play_game
     if welcome_screen.trigger:
         welcome_screen.goto(-1000, -1000)
         welcome_screen.next_button.goto(-1000, -1000)
         welcome_screen.back_button.goto(-1000, -1000)
+        play_game = True
         begin_game()
     else:
         screen.update()
@@ -54,9 +56,9 @@ def check_game_trigger():
 
 # Begin game when player hits 'Play' or 'Replay' buttons
 def begin_game():
+    global play_game
     cosmo.showturtle()
     level_display.show_level()
-    play_game = True
     screen.update()
 
     # Call obstacle_generator methods to create obstacles and move them forward
@@ -105,13 +107,14 @@ def end_game():
 
     # Call lose_screen method to display game over message and ask player to replay or exit
     lose_screen.lose_screen()
-    lose_screen.exit_button.onclick(fun=exit_screen, add=True)
-    lose_screen.replay_button.onclick(fun=replay_game, add=True)
+    lose_screen.exit_button.onclick(fun=exit_screen, add=False)
+    lose_screen.replay_button.onclick(fun=replay_game, add=False)
     screen.update()
 
 
 # Reset screen if player chooses to replay and call the begin_game function
 def replay_game(*args):
+    global play_game
     lose_screen.goto(-1000, -1000)
     lose_screen.exit_button.goto(-1000, -1000)
     lose_screen.replay_button.goto(-1000, -1000)
@@ -120,6 +123,7 @@ def replay_game(*args):
     level_display.clear()
     level_display.level = 0
     cosmo.goto(cosmo.starting_pos)
+    play_game = True
     begin_game()
 
 
@@ -141,5 +145,6 @@ if __name__ == "__main__":
     icon_credit = Turtle()
     icon_credit.hideturtle()
     FONT = ("Courier", 8, "normal")
+    play_game = False
     setup()
     screen.mainloop()
