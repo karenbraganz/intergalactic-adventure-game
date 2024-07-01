@@ -21,7 +21,7 @@ class ObstacleGenerator:
         obstacle_number = random.randint(0, 3)
 
         # Obstacles are created at a higher frequency at higher levels to keep up with the increased speed of obstacles
-        if obstacle_number <= 0 + self.level:
+        if obstacle_number <= self.level:
             if not self.recycle:
                 obstacle = Turtle()
                 obstacle.penup()
