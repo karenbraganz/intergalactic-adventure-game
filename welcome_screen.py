@@ -3,7 +3,10 @@ from turtle import Turtle
 
 class WelcomeScreen(Turtle):
     def __init__(self):
-        # Initialize all turtle objects used to display welcome instructions, game over message, and buttons
+        """Initialize all turtle objects used to display
+
+        welcome instructions, game over message, and buttons"""
+
         super().__init__()
         self.hideturtle()
         self.penup()
@@ -20,8 +23,9 @@ class WelcomeScreen(Turtle):
         self.replay_button = Turtle()
         self.replay_button.hideturtle()
 
-    # Display first welcome screen with only the 'Next' button
     def welcome1(self, *args):
+        """Display first welcome screen with only the 'Next' button"""
+
         self.showturtle()
         self.shape("images/welcome_screen1.gif")
         self.back_button.hideturtle()
@@ -33,8 +37,9 @@ class WelcomeScreen(Turtle):
         # Add event listener to button to allow player to navigate between screens
         self.next_button.onclick(fun=self.welcome2, add=True)
 
-    # Display second welcome screen with 'Back' and 'Next' buttons
     def welcome2(self, *args):
+        """Display second welcome screen with 'Back' and 'Next' buttons"""
+
         self.shape("images/welcome_screen2.gif")
         self.back_button.penup()
         self.back_button.goto(-150, -150)
@@ -44,26 +49,30 @@ class WelcomeScreen(Turtle):
         self.next_button.onclick(fun=self.welcome3, add=False)
         self.next_button.shape("images/next.gif")
 
-    # Display third welcome screen
     def welcome3(self, *args):
+        """Display third welcome screen"""
+
         self.shape("images/welcome_screen3.gif")
         self.back_button.onclick(fun=self.welcome2, add=False)
         self.next_button.onclick(fun=self.welcome4, add=False)
         self.next_button.shape("images/next.gif")
 
-    # Display fourth welcome screen replacing 'Next' button with 'Play' button
     def welcome4(self, *args):
+        """Display fourth welcome screen replacing 'Next' button with 'Play' button"""
+
         self.shape("images/welcome_screen4.gif")
         self.back_button.onclick(fun=self.welcome3, add=False)
         self.next_button.shape("images/play.gif")
         self.next_button.onclick(fun=self.game_trigger, add=False)
 
-    # Set game trigger to true for game to begin
     def game_trigger(self, *args):
+        """Set game trigger to true for game to begin"""
+
         self.trigger = True
 
-    # Display game over screen with 'Replay' and 'Exit' buttons
     def lose_screen(self):
+        """Display game over screen with 'Replay' and 'Exit' buttons"""
+
         self.goto(0, 100)
         self.shape("images/alien_monster.gif")
         self.showturtle()

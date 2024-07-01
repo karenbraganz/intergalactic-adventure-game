@@ -14,13 +14,15 @@ class Scoreboard(Turtle):
         with open("highscore.txt") as self.file:
             self.highscore = int(self.file.read())
 
-    # Displays game level and highscore on the screen
     def show_level(self):
+        """Displays game level and highscore on the screen"""
+
         self.goto(0, 250)
         self.write(f"Level: {self.level}         High Score: {self.highscore}", move=False, align="center", font=FONT)
 
-    # Increment game level when a level is cleared
     def refresh_level(self):
+        """Increment game level when a level is cleared"""
+
         self.level += 1
         # Update highscore if current level is higher
         if self.level > self.highscore:

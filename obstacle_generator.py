@@ -14,8 +14,9 @@ class ObstacleGenerator:
         self.types = ["spaceship", "regular_asteroid", "fiery_asteroid"]
         self.recycle = []
 
-    # Create obstacles and append to list for tracking
     def create_obstacles(self):
+        """Create obstacles and append to list for tracking"""
+
         # Control frequency of created obstacles
         obstacle_number = random.randint(0, 3)
 
@@ -38,8 +39,9 @@ class ObstacleGenerator:
             obstacle.goto(x_pos, y_pos)
             obstacle.showturtle()
 
-    # Move obstacles forward with speed in accordance with game level
     def obstacle_move(self):
+        """Move obstacles forward with speed in accordance with game level"""
+
         for i in self.all_obstacles:
             # Remove obstacle from the all_obstacles list and add to recycle list once it is off the screen
             if i.xcor() <= -350:
@@ -48,8 +50,9 @@ class ObstacleGenerator:
             else:
                 i.forward(STARTING_MOVE_DISTANCE + (MOVE_INCREMENT * self.level))
 
-    # Record increase in player level
     def level_up(self):
+        """Record increase in player level"""
+
         self.level += 1
         self.obstacle_move()
 

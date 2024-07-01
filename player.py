@@ -13,17 +13,22 @@ class Player (Turtle):
         self.goto(self.starting_pos)
         self.setheading(90)
 
-    # Control player's turtle movements when UP key is pressed
     def move_up(self):
+        """Control player's turtle movements when UP key is pressed"""
+
         self.forward(MOVE_DISTANCE)
 
-    # Reset turtle to starting position
     def reset_turtle(self):
+        """Reset turtle to starting position"""
+
         if self.ycor() == 280:
             self.goto(STARTING_POSITION)
 
-    # Detect when player has passed level and reset turtle to starting position for the next level
     def reach_finish_line(self):
+        """Detect when player has passed level and
+
+        reset turtle to starting position for the next level"""
+
         if self.ycor() >= FINISH_LINE_Y:
             self.goto(STARTING_POSITION)
             return True

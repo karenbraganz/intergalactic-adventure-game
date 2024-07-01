@@ -7,8 +7,9 @@ from scoreboard import Scoreboard
 from welcome_screen import WelcomeScreen
 
 
-# Complete initial setup of game
 def setup(*args):
+    """Complete initial setup of the game"""
+
     screen.setup(width=600, height=600)
     screen.bgcolor("black")
 
@@ -40,8 +41,11 @@ def setup(*args):
     check_game_trigger()
 
 
-# Use Turtle's ontimer function to recursively check whether player has pressed 'Play' button for game to begin
 def check_game_trigger():
+    """Use Turtle's ontimer function to recursively check whether player
+
+    has pressed 'Play' button for game to begin"""
+
     global play_game
     if welcome_screen.trigger:
         welcome_screen.goto(-1000, -1000)
@@ -54,8 +58,9 @@ def check_game_trigger():
         screen.ontimer(check_game_trigger, 100)
 
 
-# Begin game when player hits 'Play' or 'Replay' buttons
 def begin_game():
+    """Begin game when player hits 'Play' or 'Replay' buttons"""
+
     global play_game
     cosmo.showturtle()
     level_display.show_level()
@@ -112,8 +117,9 @@ def end_game():
     screen.update()
 
 
-# Reset screen if player chooses to replay and call the begin_game function
 def replay_game(*args):
+    """Reset screen if player chooses to replay and call the begin_game function"""
+
     global play_game
     lose_screen.goto(-1000, -1000)
     lose_screen.exit_button.goto(-1000, -1000)
@@ -127,14 +133,16 @@ def replay_game(*args):
     begin_game()
 
 
-# Exit game screen if player clicks on the 'Exit' button
 def exit_screen(*args):
+    """Exit game screen if player clicks on the 'Exit' button"""
+
     screen.clearscreen()
     screen.bye()
 
 
-# Initialize objects used in game and call setup function
 if __name__ == "__main__":
+    """Initialize objects used in game and call setup function"""
+
     screen = Screen()
     screen.tracer(0)
     cosmo = Player()
